@@ -4,59 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visualizations | Pratibha Bhandari</title>
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-  <!-- Optional: Inline Modal CSS if not in style.css -->
-  <style>
-    /* Added: Image Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      padding-top: 60px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.9);
-    }
-    .modal-content {
-      margin: auto;
-      display: block;
-      width: 80%;
-      max-width: 800px;
-      border-radius: 10px;
-    }
-    #caption {
-      margin: 15px auto;
-      text-align: center;
-      color: #ccc;
-      font-size: 18px;
-    }
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 45px;
-      color: white;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close:hover {
-      color: #bbb;
-    }
-  </style>
 </head>
 
 <body>
-
-  <!-- Header Section -->
   <header id="header">
     <div class="container">
       <h1>Data Science Visualizations</h1>
@@ -68,7 +20,6 @@
     </div>
   </header>
 
-  <!-- Main Section -->
   <main>
     <div class="container">
       <section class="card">
@@ -83,17 +34,15 @@
           <p>
             Explore Air Quality Index (AQI) patterns across cities using pollutants data having CO, PM10, NH3, SO2 through Python-based data analysis and visualizations.
           </p>
-
           <div style="margin: 2rem 0;">
-            <a href="https://github.com/bhandaripratibha/air-quality-index"
-              class="btn"
-              style="margin: 0.5rem; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+            <a href="https://github.com/bhandaripratibha/air-quality-index" 
+               class="btn" 
+               style="margin: 0.5rem; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
               <i class="fab fa-github"></i> View Repository
             </a>
-
-            <a href="https://colab.research.google.com/github/bhandaripratibha/air-quality-index/blob/main/Air_quality.ipynb"
-              class="btn"
-              style="margin: 0.5rem; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+            <a href="https://colab.research.google.com/github/bhandaripratibha/air-quality-index/blob/main/Air_quality.ipynb" 
+               class="btn" 
+               style="margin: 0.5rem; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
               <i class="fab fa-google"></i> Open in Colab
             </a>
           </div>
@@ -101,48 +50,101 @@
 
         <!-- Visualization Gallery -->
         <div class="viz-gallery">
+
           <div class="viz-item">
-            <img src="plots/stationpollutant.png"
-                 alt="Station locations by pollutant type"
-                 onclick="openImageModal(this)">
+            <img src="plots/stationpollutant.png" alt="Station locations by pollutant type" onclick="openImageModal(this)">
             <div class="viz-caption">
               <h3>Station Location Analysis</h3>
               <p>
-                Visual analysis of pollutant concentration trends across multiple monitoring stations to
+                Visual analysis of pollutant concentration trends across multiple monitoring stations to 
                 understand real-time air quality levels and city-wise pollution patterns.
               </p>
             </div>
           </div>
-        </div>
 
-        <!-- Added: Image Modal -->
-        <div id="imageModal" class="modal">
-          <span class="close" onclick="closeImageModal()">&times;</span>
-          <img class="modal-content" id="modalImg">
-          <div id="caption"></div>
+          <div class="viz-item">
+            <img src="plots/pollutantaverage.png" alt="Pollutant Distribution Box Plot" onclick="openImageModal(this)">
+            <div class="viz-caption">
+              <h3>Distribution Analysis</h3>
+              <p>
+                Box plot visualizing pollutant concentration distributions across cities — identifying outliers 
+                and spread.
+              </p>
+            </div>
+          </div>
+
+          <div class="viz-item">
+            <img src="plots/top10mostpollutedcities.png" alt="City-wise AQI Bar Plot" onclick="openImageModal(this)">
+            <div class="viz-caption">
+              <h3>Top 10 Most Polluted Cities</h3>
+              <p>
+                City-wise AQI bar plot highlighting the most polluted urban areas based on average AQI values.
+              </p>
+            </div>
+          </div>
+        </div> <!-- End of viz-gallery -->
+
+        <!-- Key Insights Section -->
+        <div style="text-align: center; margin: 3rem 0;">
+          <h3><i class="fas fa-lightbulb"></i> Key Insights</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem;">
+              <h4>Major Pollutants</h4>
+              <p>PM10 and CO identified as key contributors to poor air quality across cities.</p>
+            </div>
+            <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem;">
+              <h4>High AQI Zones</h4>
+              <p>Top 10 cities recorded AQI levels above national safe limits, indicating critical pollution.</p>
+            </div>
+          </div>
         </div>
 
       </section>
     </div>
   </main>
 
-  <!-- Added: JavaScript -->
+  <!-- Image Modal -->
+  <div id="image-modal" class="modal" style="display:none;">
+    <div class="modal-content" style="max-width: 90%; text-align: center;">
+      <span class="close" style="cursor:pointer; font-size: 2rem;">&times;</span>
+      <img id="modal-image" style="max-width: 100%; height: auto; border-radius: 10px;">
+      <h3 id="modal-title" style="margin-top: 1rem;"></h3>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:pratibhab@iisc.ac.in">pratibhab@iisc.ac.in</a>
+      </p>
+    </div>
+  </footer>
+
   <script>
-    function openImageModal(img) {
-      var modal = document.getElementById("imageModal");
-      var modalImg = document.getElementById("modalImg");
-      var caption = document.getElementById("caption");
+    // Simple Image Modal Script
+    function openImageModal(imgElement) {
+      const modal = document.getElementById("image-modal");
+      const modalImg = document.getElementById("modal-image");
+      const modalTitle = document.getElementById("modal-title");
 
       modal.style.display = "block";
-      modalImg.src = img.src;
-      caption.innerHTML = img.alt;
+      modalImg.src = imgElement.src;
+      modalTitle.innerText = imgElement.alt;
     }
 
-    function closeImageModal() {
-      var modal = document.getElementById("imageModal");
-      modal.style.display = "none";
-    }
+    // Close Modal
+    document.querySelector(".close").onclick = function() {
+      document.getElementById("image-modal").style.display = "none";
+    };
+
+    // Close when clicking outside the image
+    window.onclick = function(event) {
+      const modal = document.getElementById("image-modal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
   </script>
-
 </body>
 </html>
